@@ -1,5 +1,5 @@
-@import url(/style/reset.css);
-@import url(/style/theme.css);
-@import url(/style/base.css);
-@import url(/style/sr-only.css);
-@import url(/style/auto-layout.css);
+@import url(/auto-layout/style/reset.css);
+@import url(/auto-layout/style/theme.css);
+@import url(/auto-layout/style/base.css);
+@import url(/auto-layout/style/sr-only.css);
+@import url(/auto-layout/style/auto-layout.css);
