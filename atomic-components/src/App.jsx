@@ -2,8 +2,59 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import { Button } from "./components/Button";
+import { Category } from "./components/Category";
+
+const categories = [
+  {
+    group: "프로그래밍",
+    name: "프론트엔드",
+    key: "front-end",
+  },
+  {
+    group: "프로그래밍",
+    name: "백엔드",
+    key: "back-end",
+  },
+  { group: "프로그래밍", name: "리액트", key: "react" },
+  {
+    group: "프로그래밍",
+    name: "풀스택",
+    key: "full-stack",
+  },
+  {
+    group: "프로그래밍",
+    name: "알고리즘",
+    key: "algorithms",
+  },
+  {
+    group: "프로그래밍",
+    name: "기초지식",
+    key: "basics",
+  },
+  { group: "디자인", name: "UI디자인", key: "ui" },
+  { group: "디자인", name: "UX디자인", key: "ux" },
+  { group: "디자인", name: "UI • UX", key: "ui-ux" },
+  {
+    group: "데이터",
+    name: "데이터분석",
+    key: "data-analytics",
+  },
+  {
+    group: "데이터",
+    name: "통계분석",
+    key: "statistics",
+  },
+  {
+    group: "데이터",
+    name: "시각화",
+    key: "visualization",
+  },
+];
 
 function App() {
+  const [selectedCategories, setSelectedCategories] = useState({});
+
   return (
     <html lang="ko">
       <head>
@@ -33,7 +84,7 @@ function App() {
                 alt="분야로 검색하기"
                 className="pointer-events-none absolute left-1 top-[0.0625rem] h-[1.125rem] w-[1.125rem] xs:h-[1.575rem] xs:w-[1.575rem] sm:h-[2.025rem] sm:w-[2.025rem]"
               />
-              <label for="search" className="sr-only">
+              <label htmlFor="search" className="sr-only">
                 분야 검색하기
               </label>
               <input
@@ -50,254 +101,48 @@ function App() {
               관심분야를 선택해주세요!
             </h1>
             <div className="mb-1 grid grid-cols-2 gap-x-2 whitespace-nowrap font-semibold leading-[150%] xs:mb-[1.4rem] sm:mb-[1.8rem] sm:gap-x-3 md:gap-x-5">
-              <button
-                type="button"
-                className="category-button my-2 flex h-[3.8125rem] items-center justify-between rounded-lg bg-[#A7A7A7] p-3 xs:my-[0.7rem] xs:h-[5.3375rem] xs:p-[1.05rem] sm:my-[0.45rem] sm:h-[6.8625rem] sm:p-[1.35rem]"
-                data-category="front-end"
-              >
-                <span className="category flex flex-col items-start xs:gap-2 sm:gap-3">
-                  <span className="text-[0.65644rem] xs:text-[0.919016rem] sm:text-[1.181592rem]">
-                    프로그래밍
-                  </span>
-                  <span className="text-base-group category-detail">
-                    프론트엔드
-                  </span>
-                </span>
-                <img
-                  src="/icon/category-plus.svg"
-                  className="h-[1.125rem] w-[1.125rem] xs:h-[1.575rem] xs:w-[1.575rem] sm:h-[2.025rem] sm:w-[2.025rem]"
-                  alt="선택되지 않음"
-                />
-              </button>
-
-              <button
-                type="button"
-                className="category-button my-2 flex h-[3.8125rem] items-center justify-between rounded-lg bg-[#A7A7A7] p-3 xs:my-[0.7rem] xs:h-[5.3375rem] xs:p-[1.05rem] sm:my-[0.45rem] sm:h-[6.8625rem] sm:p-[1.35rem]"
-                data-category="back-end"
-              >
-                <span className="category flex flex-col items-start xs:gap-2 sm:gap-3">
-                  <span className="text-[0.65644rem] xs:text-[0.919016rem] sm:text-[1.181592rem]">
-                    프로그래밍
-                  </span>
-                  <span className="text-base-group category-detail">
-                    백엔드
-                  </span>
-                </span>
-                <img
-                  src="/icon/category-plus.svg"
-                  className="h-[1.125rem] w-[1.125rem] xs:h-[1.575rem] xs:w-[1.575rem] sm:h-[2.025rem] sm:w-[2.025rem]"
-                  alt="선택되지 않음"
-                />
-              </button>
-
-              <button
-                type="button"
-                className="category-button my-2 flex h-[3.8125rem] items-center justify-between rounded-lg bg-[#A7A7A7] p-3 xs:my-[0.7rem] xs:h-[5.3375rem] xs:p-[1.05rem] sm:my-[0.45rem] sm:h-[6.8625rem] sm:p-[1.35rem]"
-                data-category="react"
-              >
-                <span className="category flex flex-col items-start xs:gap-2 sm:gap-3">
-                  <span className="text-[0.65644rem] xs:text-[0.919016rem] sm:text-[1.181592rem]">
-                    프로그래밍
-                  </span>
-                  <span className="text-base-group category-detail">
-                    리액트
-                  </span>
-                </span>
-                <img
-                  src="/icon/category-plus.svg"
-                  className="h-[1.125rem] w-[1.125rem] xs:h-[1.575rem] xs:w-[1.575rem] sm:h-[2.025rem] sm:w-[2.025rem]"
-                  alt="선택되지 않음"
-                />
-              </button>
-
-              <button
-                type="button"
-                className="category-button my-2 flex h-[3.8125rem] items-center justify-between rounded-lg bg-[#A7A7A7] p-3 xs:my-[0.7rem] xs:h-[5.3375rem] xs:p-[1.05rem] sm:my-[0.45rem] sm:h-[6.8625rem] sm:p-[1.35rem]"
-                data-category="full-stack"
-              >
-                <span className="category flex flex-col items-start xs:gap-2 sm:gap-3">
-                  <span className="text-[0.65644rem] xs:text-[0.919016rem] sm:text-[1.181592rem]">
-                    프로그래밍
-                  </span>
-                  <span className="text-base-group category-detail">
-                    풀스택
-                  </span>
-                </span>
-                <img
-                  src="/icon/category-plus.svg"
-                  className="h-[1.125rem] w-[1.125rem] xs:h-[1.575rem] xs:w-[1.575rem] sm:h-[2.025rem] sm:w-[2.025rem]"
-                  alt="선택되지 않음"
-                />
-              </button>
-
-              <button
-                type="button"
-                className="category-button my-2 flex h-[3.8125rem] items-center justify-between rounded-lg bg-[#A7A7A7] p-3 xs:my-[0.7rem] xs:h-[5.3375rem] xs:p-[1.05rem] sm:my-[0.45rem] sm:h-[6.8625rem] sm:p-[1.35rem]"
-                data-category="algorithms"
-              >
-                <span className="category flex flex-col items-start xs:gap-2 sm:gap-3">
-                  <span className="text-[0.65644rem] xs:text-[0.919016rem] sm:text-[1.181592rem]">
-                    프로그래밍
-                  </span>
-                  <span className="text-base-group category-detail">
-                    알고리즘
-                  </span>
-                </span>
-                <img
-                  src="/icon/category-plus.svg"
-                  className="h-[1.125rem] w-[1.125rem] xs:h-[1.575rem] xs:w-[1.575rem] sm:h-[2.025rem] sm:w-[2.025rem]"
-                  alt="선택되지 않음"
-                />
-              </button>
-
-              <button
-                type="button"
-                className="category-button my-2 flex h-[3.8125rem] items-center justify-between rounded-lg bg-[#A7A7A7] p-3 xs:my-[0.7rem] xs:h-[5.3375rem] xs:p-[1.05rem] sm:my-[0.45rem] sm:h-[6.8625rem] sm:p-[1.35rem]"
-                data-category="basics"
-              >
-                <span className="category flex flex-col items-start xs:gap-2 sm:gap-3">
-                  <span className="text-[0.65644rem] xs:text-[0.919016rem] sm:text-[1.181592rem]">
-                    프로그래밍
-                  </span>
-                  <span className="text-base-group category-detail">
-                    기초지식
-                  </span>
-                </span>
-                <img
-                  src="/icon/category-plus.svg"
-                  className="h-[1.125rem] w-[1.125rem] xs:h-[1.575rem] xs:w-[1.575rem] sm:h-[2.025rem] sm:w-[2.025rem]"
-                  alt="선택되지 않음"
-                />
-              </button>
-
-              <button
-                type="button"
-                className="category-button my-2 flex h-[3.8125rem] items-center justify-between rounded-lg bg-[#A7A7A7] p-3 xs:my-[0.7rem] xs:h-[5.3375rem] xs:p-[1.05rem] sm:my-[0.45rem] sm:h-[6.8625rem] sm:p-[1.35rem]"
-                data-category="ui"
-              >
-                <span className="category flex flex-col items-start xs:gap-2 sm:gap-3">
-                  <span className="text-[0.65644rem] xs:text-[0.919016rem] sm:text-[1.181592rem]">
-                    디자인
-                  </span>
-                  <span className="text-base-group category-detail">
-                    UI디자인
-                  </span>
-                </span>
-                <img
-                  src="/icon/category-plus.svg"
-                  className="h-[1.125rem] w-[1.125rem] xs:h-[1.575rem] xs:w-[1.575rem] sm:h-[2.025rem] sm:w-[2.025rem]"
-                  alt="선택되지 않음"
-                />
-              </button>
-
-              <button
-                type="button"
-                className="category-button my-2 flex h-[3.8125rem] items-center justify-between rounded-lg bg-[#A7A7A7] p-3 xs:my-[0.7rem] xs:h-[5.3375rem] xs:p-[1.05rem] sm:my-[0.45rem] sm:h-[6.8625rem] sm:p-[1.35rem]"
-                data-category="ux"
-              >
-                <span className="category flex flex-col items-start xs:gap-2 sm:gap-3">
-                  <span className="text-[0.65644rem] xs:text-[0.919016rem] sm:text-[1.181592rem]">
-                    디자인
-                  </span>
-                  <span className="text-base-group category-detail">
-                    UX디자인
-                  </span>
-                </span>
-                <img
-                  src="/icon/category-plus.svg"
-                  className="h-[1.125rem] w-[1.125rem] xs:h-[1.575rem] xs:w-[1.575rem] sm:h-[2.025rem] sm:w-[2.025rem]"
-                  alt="선택되지 않음"
-                />
-              </button>
-
-              <button
-                type="button"
-                className="category-button my-2 flex h-[3.8125rem] items-center justify-between rounded-lg bg-[#A7A7A7] p-3 xs:my-[0.7rem] xs:h-[5.3375rem] xs:p-[1.05rem] sm:my-[0.45rem] sm:h-[6.8625rem] sm:p-[1.35rem]"
-                data-category="ui-ux"
-              >
-                <span className="category flex flex-col items-start xs:gap-2 sm:gap-3">
-                  <span className="text-[0.65644rem] xs:text-[0.919016rem] sm:text-[1.181592rem]">
-                    디자인
-                  </span>
-                  <span className="text-base-group category-detail">
-                    UI • UX
-                  </span>
-                </span>
-                <img
-                  src="/icon/category-plus.svg"
-                  className="h-[1.125rem] w-[1.125rem] xs:h-[1.575rem] xs:w-[1.575rem] sm:h-[2.025rem] sm:w-[2.025rem]"
-                  alt="선택되지 않음"
-                />
-              </button>
-
-              <button
-                type="button"
-                className="category-button my-2 flex h-[3.8125rem] items-center justify-between rounded-lg bg-[#A7A7A7] p-3 xs:my-[0.7rem] xs:h-[5.3375rem] xs:p-[1.05rem] sm:my-[0.45rem] sm:h-[6.8625rem] sm:p-[1.35rem]"
-                data-category="data-analytics"
-              >
-                <span className="category flex flex-col items-start xs:gap-2 sm:gap-3">
-                  <span className="text-[0.65644rem] xs:text-[0.919016rem] sm:text-[1.181592rem]">
-                    데이터
-                  </span>
-                  <span className="text-base-group category-detail">
-                    데이터분석
-                  </span>
-                </span>
-                <img
-                  src="/icon/category-plus.svg"
-                  className="h-[1.125rem] w-[1.125rem] xs:h-[1.575rem] xs:w-[1.575rem] sm:h-[2.025rem] sm:w-[2.025rem]"
-                  alt="선택되지 않음"
-                />
-              </button>
-
-              <button
-                type="button"
-                className="category-button my-2 flex h-[3.8125rem] items-center justify-between rounded-lg bg-[#A7A7A7] p-3 xs:my-[0.7rem] xs:h-[5.3375rem] xs:p-[1.05rem] sm:my-[0.45rem] sm:h-[6.8625rem] sm:p-[1.35rem]"
-                data-category="statistics"
-              >
-                <span className="category flex flex-col items-start xs:gap-2 sm:gap-3">
-                  <span className="text-[0.65644rem] xs:text-[0.919016rem] sm:text-[1.181592rem]">
-                    데이터
-                  </span>
-                  <span className="text-base-group category-detail">
-                    통계분석
-                  </span>
-                </span>
-                <img
-                  src="/icon/category-plus.svg"
-                  className="h-[1.125rem] w-[1.125rem] xs:h-[1.575rem] xs:w-[1.575rem] sm:h-[2.025rem] sm:w-[2.025rem]"
-                  alt="선택되지 않음"
-                />
-              </button>
-
-              <button
-                type="button"
-                className="category-button my-2 flex h-[3.8125rem] items-center justify-between rounded-lg bg-[#A7A7A7] p-3 xs:my-[0.7rem] xs:h-[5.3375rem] xs:p-[1.05rem] sm:my-[0.45rem] sm:h-[6.8625rem] sm:p-[1.35rem]"
-                data-category="visualization"
-              >
-                <span className="category flex flex-col items-start xs:gap-2 sm:gap-3">
-                  <span className="text-[0.65644rem] xs:text-[0.919016rem] sm:text-[1.181592rem]">
-                    데이터
-                  </span>
-                  <span className="text-base-group category-detail">
-                    시각화
-                  </span>
-                </span>
-                <img
-                  src="/icon/category-plus.svg"
-                  className="h-[1.125rem] w-[1.125rem] xs:h-[1.575rem] xs:w-[1.575rem] sm:h-[2.025rem] sm:w-[2.025rem]"
-                  alt="선택되지 않음"
-                />
-              </button>
+              {categories.map(({ group, name, key }) => {
+                return (
+                  <Category
+                    categoryGroup={group}
+                    categoryName={name}
+                    checked={selectedCategories[key] ?? false}
+                    key={key}
+                    onClick={() => {
+                      if (selectedCategories[key]) {
+                        const newValue = {
+                          ...selectedCategories,
+                        };
+                        delete newValue[key];
+                        setSelectedCategories(newValue);
+                      } else {
+                        if (Object.keys(selectedCategories).length === 5) {
+                          alert("최대 다섯 개만 선택하실 수 있습니다.");
+                          return;
+                        }
+                        setSelectedCategories({
+                          ...selectedCategories,
+                          [key]: true,
+                        });
+                      }
+                    }}
+                  />
+                );
+              })}
             </div>
           </main>
-
-          <a
-            className="save-button text-base-group flex h-9 w-full items-center justify-center whitespace-nowrap rounded-lg bg-primary text-center font-bold text-white xs:h-[3.15rem] sm:h-[4.05rem]"
-            href="/pages/signup/index.html"
+          <Button
+            disabled={Object.keys(selectedCategories).length < 1}
+            onClick={() =>
+              alert(
+                `당신이 선택한 카테고리는 ${Object.keys(
+                  selectedCategories
+                ).join(", ")} 입니다.`
+              )
+            }
           >
             이대로 저장할래요
-          </a>
+          </Button>
         </div>
       </body>
     </html>
