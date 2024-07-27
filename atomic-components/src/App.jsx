@@ -3,7 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import { Button } from "./components/Button";
-import { Category } from "./components/Category";
+import { CategoryList } from "./components/CategoryList";
 
 const categories = [
   {
@@ -100,36 +100,11 @@ function App() {
             <h1 className="text-base-group mt-4 font-semibold text-primary xs:mt-[1.568rem] sm:mt-[1.8rem]">
               관심분야를 선택해주세요!
             </h1>
-            <div className="mb-1 grid grid-cols-2 gap-x-2 whitespace-nowrap font-semibold leading-[150%] xs:mb-[1.4rem] sm:mb-[1.8rem] sm:gap-x-3 md:gap-x-5">
-              {categories.map(({ group, name, key }) => {
-                return (
-                  <Category
-                    categoryGroup={group}
-                    categoryName={name}
-                    checked={selectedCategories[key] ?? false}
-                    key={key}
-                    onClick={() => {
-                      if (selectedCategories[key]) {
-                        const newValue = {
-                          ...selectedCategories,
-                        };
-                        delete newValue[key];
-                        setSelectedCategories(newValue);
-                      } else {
-                        if (Object.keys(selectedCategories).length === 5) {
-                          alert("최대 다섯 개만 선택하실 수 있습니다.");
-                          return;
-                        }
-                        setSelectedCategories({
-                          ...selectedCategories,
-                          [key]: true,
-                        });
-                      }
-                    }}
-                  />
-                );
-              })}
-            </div>
+            <CategoryList
+              categories={categories}
+              selectedCategories={selectedCategories}
+              setSelectedCategories={setSelectedCategories}
+            />
           </main>
           <Button
             disabled={Object.keys(selectedCategories).length < 1}
