@@ -6,10 +6,6 @@
   body {
     @apply bg-black font-pretendard text-contentPrimary;
   }
-
-  #app {
-    @apply min-h-screen m-auto bg-background;
-  }
 }
 
 .text-sm-group {
