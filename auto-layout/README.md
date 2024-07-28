@@ -1,5 +1,4 @@
-**Figma 시안** 바로가기(버튼 클릭)<br><br>
-[![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)](<https://www.figma.com/design/5xqwcpAdXVyJgEbarggDLO/%EB%94%94%EC%9E%90%EC%9D%B8-%E2%86%92-%EA%B0%9C%EB%B0%9C-%ED%95%B8%EB%93%9C%EC%98%A4%ED%94%84-(Copy)?node-id=0-1&t=4aoAmNBP86iVb3qy-1>)<br>
+**Figma 시안** 바로가기(버튼 클릭)<br><br>[![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)](<https://www.figma.com/design/5xqwcpAdXVyJgEbarggDLO/%EB%94%94%EC%9E%90%EC%9D%B8-%E2%86%92-%EA%B0%9C%EB%B0%9C-%ED%95%B8%EB%93%9C%EC%98%A4%ED%94%84-(Copy)?node-id=0-1&t=4aoAmNBP86iVb3qy-1>)<br><br>
 
 ### Step 1. Figma 시안대로 마크업 및 스타일링
 
