@@ -1,0 +1,18 @@
+.status {
+  margin-bottom: 10px;
+}
+.game {
+  /* display: flex;
+  flex-direction: row; */
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+
+  --primary-color: #1b1a19;
+  --secondary-color: #f7f3ed;
+  --square-size: 80px;
+}
+
+.game-info {
+  margin-left: 20px;
+}
