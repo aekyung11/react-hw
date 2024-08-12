@@ -17,6 +17,11 @@ export default function Game() {
     setHistoryIdx(nextHistory.length - 1);
   }
 
+  function reset() {
+    setHistoryIdx(0);
+    setHistory([INITIAL_SQUARES]);
+  }
+
   function jumpTo(nextMove: number) {
     setHistoryIdx(nextMove);
   }
@@ -24,7 +29,12 @@ export default function Game() {
   return (
     <div className={styles.game}>
       <Board squares={currentSquares} onPlay={handlePlay} />
-      <History jumpTo={jumpTo} history={history} historyIdx={historyIdx} />
+      <History
+        jumpTo={jumpTo}
+        restart={reset}
+        history={history}
+        historyIdx={historyIdx}
+      />
     </div>
   );
 }
