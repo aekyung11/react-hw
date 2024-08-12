@@ -1,17 +1,14 @@
 import styles from "@/App.module.css";
 import { Squares } from "@/components/Squares/Squares";
-import {
-  calculateWinner,
-  INITIAL_SQUARES,
-  PLAYER,
-  PLAYER_COUNT,
-} from "@/constants";
-import { useState } from "react";
+import { calculateWinner, PLAYER, PLAYER_COUNT } from "@/constants";
 import Status from "@/components/Status/Status";
 
-export default function Board() {
-  const [squares, setSquares] = useState<(string | null)[]>(INITIAL_SQUARES);
+type BoardProps = {
+  squares: (string | null)[];
+  onPlay: (nextSquares: (string | null)[]) => void;
+};
 
+export default function Board({ squares, onPlay }: BoardProps) {
   const currentMove = squares.filter(Boolean).length;
   const winnerInfo = calculateWinner(squares);
   const isPlayerOneTurn = currentMove % PLAYER_COUNT === 0;
@@ -27,7 +24,7 @@ export default function Board() {
       />
       <Squares
         squares={squares}
-        setSquares={setSquares}
+        onPlay={onPlay}
         winnerInfo={winnerInfo}
         currentPlayer={currentPlayer}
       />

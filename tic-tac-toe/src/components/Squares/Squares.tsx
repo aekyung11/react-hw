@@ -4,7 +4,7 @@ import { Square } from "@/components/Square/Square";
 
 type SquaresProps = {
   squares: (string | null)[];
-  setSquares: React.Dispatch<React.SetStateAction<(string | null)[]>>;
+  onPlay: (nextSquares: (string | null)[]) => void;
   winnerInfo: {
     winner: string;
     line: number[];
@@ -14,7 +14,7 @@ type SquaresProps = {
 
 export function Squares({
   squares,
-  setSquares,
+  onPlay,
   winnerInfo,
   currentPlayer,
 }: SquaresProps) {
@@ -23,11 +23,10 @@ export function Squares({
       if (squares[i] || winnerInfo) {
         return;
       }
-      setSquares((prevSquares) => {
-        const nextSquares = [...prevSquares];
-        nextSquares[i] = currentPlayer;
-        return nextSquares;
-      });
+
+      const nextSquares = [...squares];
+      nextSquares[i] = currentPlayer;
+      onPlay(nextSquares);
     };
   };
 
