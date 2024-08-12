@@ -1,23 +1,24 @@
-import { useState } from "react";
 import styles from "@/components/Squares/Squares.module.css";
-import {
-  calculateWinner,
-  INITIAL_SQUARES,
-  PLAYER,
-  PLAYER_COUNT,
-  WINNERS_COLOR,
-} from "@/constants";
+import { WINNERS_COLOR } from "@/constants";
 import { Square } from "@/components/Square/Square";
 
-export function Squares() {
-  const [squares, setSquares] = useState(INITIAL_SQUARES);
+type SquaresProps = {
+  squares: (string | null)[];
+  setSquares: React.Dispatch<React.SetStateAction<(string | null)[]>>;
+  winnerInfo: {
+    winner: string;
+    line: number[];
+  } | null;
+  currentPlayer: string;
+};
 
-  const currentMove = squares.filter(Boolean).length;
-  const winnerInfo = calculateWinner(squares);
-  const isPlayerOneTurn = currentMove % PLAYER_COUNT === 0;
-  const currentPlayer = isPlayerOneTurn ? PLAYER.ONE : PLAYER.TWO;
-
-  function getHandleSquareClick(i: number) {
+export function Squares({
+  squares,
+  setSquares,
+  winnerInfo,
+  currentPlayer,
+}: SquaresProps) {
+  const getHandleSquareClick = (i: number) => {
     return () => {
       if (squares[i] || winnerInfo) {
         return;
@@ -28,7 +29,7 @@ export function Squares() {
         return nextSquares;
       });
     };
-  }
+  };
 
   return (
     <div className={styles.component}>

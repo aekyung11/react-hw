@@ -17,7 +17,7 @@ const WINNING_LINES = [
   [2, 4, 6],
 ];
 
-export function calculateWinner(squares: string | null[]) {
+export function calculateWinner(squares: (string | null)[]) {
   for (let i = 0; i < WINNING_LINES.length; i++) {
     const [a, b, c] = WINNING_LINES[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
