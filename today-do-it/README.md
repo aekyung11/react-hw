@@ -17,3 +17,16 @@
 - react router를 이용해 로그인/회원가입 페이지(join) 구현.
 - login protected Home route 구현
   - 테스트를 위해 현재 username을 보여주도록 함.
+
+### TODO model
+
+- id, created, updated → pocketbase system fields
+- user → Relation, Single, Users
+- completed → boolean
+- archived_at → DateTime
+- title → Plain Text
+- details → Plain Text
+- start, end → DateTime
+- access control → listRule, viewRule, createRule, updateRule, deleteRule
+  - deleteRule은 admin만 가능하도록 설정
+  - 나머지 rule은 해당 유저만 가능하도록 설정(`@request.auth.id = user.id`)

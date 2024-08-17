@@ -5,7 +5,7 @@ const pb = new PocketBase(import.meta.env.VITE_POCKETBASE_URL);
 export async function currentUser() {
   if (pb.authStore.isValid) {
     try {
-      await pb.collection("users").authRefresh();
+      await pb.collection("users").authRefresh({ requestKey: null });
 
       return pb.authStore.model;
     } catch (error) {
