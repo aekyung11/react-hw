@@ -6,7 +6,7 @@ import { TodoRow } from "@/components/TodoRow";
 
 function Home() {
   const { user } = useOutletContext<UserContext>();
-  const { todos, loading, setCompletedTo } = useTodos();
+  const { todos, loading, setCompletedTo, setArchivedAt } = useTodos();
 
   if (loading) {
     return <Spinner />;
@@ -20,6 +20,7 @@ function Home() {
           key={todo.id}
           todo={todo}
           handleSetCompletedTo={setCompletedTo}
+          handleSetArchivedAt={setArchivedAt}
         />
       ))}
     </>

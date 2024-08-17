@@ -80,5 +80,15 @@ export function useTodos() {
     []
   );
 
-  return { todos, loading, setCompletedTo };
+  const setArchivedAt = useCallback(
+    async (todoId: string, archivedAt: Date | null) => {
+      const pb = getPb();
+      await pb.collection("todos").update(todoId, {
+        archived_at: archivedAt,
+      });
+    },
+    []
+  );
+
+  return { todos, loading, setCompletedTo, setArchivedAt };
 }
