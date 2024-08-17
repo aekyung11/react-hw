@@ -2,6 +2,7 @@ import { useOutletContext } from "react-router-dom";
 import { UserContext } from "@/routes/PrivateRoute";
 import { useTodos } from "@/hooks/useTodos";
 import { Spinner } from "@/components/Spinner";
+import { TodoRow } from "@/components/TodoRow";
 
 function Home() {
   const { user } = useOutletContext<UserContext>();
@@ -14,17 +15,9 @@ function Home() {
   return (
     <>
       <div>현재 사용자: {user?.username}</div>
-      {todos.map((todo) => {
-        return (
-          <div>
-            <h3>{todo.title}</h3>
-            <p>{todo.details}</p>
-            <span>
-              {todo.start?.toString()} ~ {todo.end?.toString()}
-            </span>
-          </div>
-        );
-      })}
+      {todos.map((todo) => (
+        <TodoRow todo={todo} />
+      ))}
     </>
   );
 }
