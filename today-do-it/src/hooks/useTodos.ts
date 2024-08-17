@@ -56,16 +56,16 @@ export function useTodos() {
     const pb = getPb();
     pb.collection("todos").subscribe("*", (e) => {
       setTodos((prevTodos) => {
-        if (e.action === "update") {
-          return prevTodos.map((todo) => {
-            if (todo.id !== e.record.id) {
-              return todo;
-            } else {
-              return transformToTodo(e.record);
-            }
-          });
+        // strictmode때문에 useEffect가 두 번씩 일어나는 현상 발생, 같은 record에서 create가 두 번 발생함.
+        const todoIndex = prevTodos.findIndex((todo) => {
+          return todo.id === e.record.id;
+        });
+        if (todoIndex > -1) {
+          const newTodos = [...prevTodos];
+          newTodos[todoIndex] = transformToTodo(e.record);
+          return newTodos;
         }
-        if (e.action === "create") {
+        if (todoIndex === -1) {
           return [transformToTodo(e.record), ...prevTodos];
         }
         return prevTodos;
