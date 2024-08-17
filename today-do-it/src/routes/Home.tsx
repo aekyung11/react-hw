@@ -3,10 +3,11 @@ import { UserContext } from "@/routes/PrivateRoute";
 import { useTodos } from "@/hooks/useTodos";
 import { Spinner } from "@/components/Spinner";
 import { TodoRow } from "@/components/TodoRow";
+import { CreateTodoForm } from "@/components/CreateTodoForm";
 
 function Home() {
   const { user } = useOutletContext<UserContext>();
-  const { todos, loading, setCompletedTo, setArchivedAt } = useTodos();
+  const { todos, loading, create, setCompletedTo, setArchivedAt } = useTodos();
 
   if (loading) {
     return <Spinner />;
@@ -15,6 +16,7 @@ function Home() {
   return (
     <>
       <div>현재 사용자: {user?.username}</div>
+      <CreateTodoForm userId={user!.id} handleCreateTodo={create} />
       {todos.map((todo) => (
         <TodoRow
           key={todo.id}

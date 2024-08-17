@@ -65,9 +65,19 @@ export function useTodos() {
             }
           });
         }
+        if (e.action === "create") {
+          return [transformToTodo(e.record), ...prevTodos];
+        }
         return prevTodos;
       });
     });
+  }, []);
+
+  const create = useCallback(async (newTodo: Partial<Todo>) => {
+    const pb = getPb();
+    await pb
+      .collection("todos")
+      .create({ ...newTodo, archived_at: newTodo.archivedAt });
   }, []);
 
   const setCompletedTo = useCallback(
@@ -90,5 +100,5 @@ export function useTodos() {
     []
   );
 
-  return { todos, loading, setCompletedTo, setArchivedAt };
+  return { todos, loading, create, setCompletedTo, setArchivedAt };
 }
