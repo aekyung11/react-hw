@@ -1,5 +1,6 @@
 import { getPb } from "@/api/pocketbase";
-import { useEffect, useState } from "react";
+import { RecordModel } from "pocketbase";
+import { useCallback, useEffect, useState } from "react";
 
 export type Todo = {
   id: string;
@@ -14,6 +15,19 @@ export type Todo = {
   end: Date | null;
 };
 
+const transformToTodo = (record: RecordModel) => ({
+  id: record.id,
+  created: new Date(record["created"]),
+  updated: new Date(record["updated"]),
+  user: record.user,
+  completed: record.completed,
+  archivedAt: record["archived_at"] ? new Date(record["archived_at"]) : null,
+  title: record.title,
+  details: record.details,
+  start: record["start"] ? new Date(record["start"]) : null,
+  end: record["end"] ? new Date(record["end"]) : null,
+});
+
 export function useTodos() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [loading, setLoading] = useState(true);
@@ -27,22 +41,7 @@ export function useTodos() {
           sort: "-created",
           requestKey: null,
         });
-        setTodos(
-          records.map((record) => ({
-            id: record.id,
-            created: new Date(record["created"]),
-            updated: new Date(record["updated"]),
-            user: record.user,
-            completed: record.completed,
-            archivedAt: record["archived_at"]
-              ? new Date(record["archived_at"])
-              : null,
-            title: record.title,
-            details: record.details,
-            start: record["start"] ? new Date(record["start"]) : null,
-            end: record["end"] ? new Date(record["end"]) : null,
-          }))
-        );
+        setTodos(records.map(transformToTodo));
       } catch (error) {
         console.error("Error!!!!!!", error);
       } finally {
@@ -53,5 +52,33 @@ export function useTodos() {
     getTodos();
   }, []);
 
-  return { todos, loading };
+  useEffect(() => {
+    const pb = getPb();
+    pb.collection("todos").subscribe("*", (e) => {
+      setTodos((prevTodos) => {
+        if (e.action === "update") {
+          return prevTodos.map((todo) => {
+            if (todo.id !== e.record.id) {
+              return todo;
+            } else {
+              return transformToTodo(e.record);
+            }
+          });
+        }
+        return prevTodos;
+      });
+    });
+  }, []);
+
+  const setCompletedTo = useCallback(
+    async (todoId: string, completed: boolean) => {
+      const pb = getPb();
+      await pb.collection("todos").update(todoId, {
+        completed,
+      });
+    },
+    []
+  );
+
+  return { todos, loading, setCompletedTo };
 }

@@ -6,7 +6,7 @@ import { TodoRow } from "@/components/TodoRow";
 
 function Home() {
   const { user } = useOutletContext<UserContext>();
-  const { todos, loading } = useTodos();
+  const { todos, loading, setCompletedTo } = useTodos();
 
   if (loading) {
     return <Spinner />;
@@ -16,7 +16,11 @@ function Home() {
     <>
       <div>현재 사용자: {user?.username}</div>
       {todos.map((todo) => (
-        <TodoRow todo={todo} />
+        <TodoRow
+          key={todo.id}
+          todo={todo}
+          handleSetCompletedTo={setCompletedTo}
+        />
       ))}
     </>
   );
