@@ -33,6 +33,12 @@ export function CreateTodoForm({
     };
 
     await handleCreateTodo(newTodo);
+    setFormData({
+      title: "",
+      details: "",
+      start: null,
+      end: null,
+    });
     // console.log("formData", newTodo);
   };
 
